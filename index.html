@@ -63,6 +63,176 @@
     }
     .nav-links a:hover { color: var(--pink-mid); }
 
+        /* ── CALENDAR ── */
+    .calendar-wrapper {
+      background: white;
+      border-radius: 28px;
+      padding: 2rem;
+      box-shadow: 0 12px 40px rgba(154,184,212,0.2);
+      border: 2.5px solid var(--blue-light);
+      margin-top: 2.5rem;
+    }
+    
+    .cal-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .cal-month-label {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.6rem; font-weight: 800;
+      color: var(--dark);
+    }
+    .cal-nav {
+      background: var(--pink-light); border: none; cursor: pointer;
+      width: 40px; height: 40px; border-radius: 50%;
+      font-size: 1.1rem; color: var(--pink-mid);
+      transition: background 0.2s, transform 0.2s;
+    }
+    .cal-nav:hover { background: var(--pink-mid); color: white; transform: scale(1.1); }
+    
+    .cal-grid {
+      display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px;
+    }
+    .cal-days-header {
+      margin-bottom: 6px;
+    }
+    .cal-days-header div {
+      text-align: center;
+      font-size: 0.78rem; font-weight: 800; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--muted);
+      padding: 0.3rem 0;
+    }
+    
+    .cal-cell {
+      aspect-ratio: 1;
+      border-radius: 12px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      font-size: 0.95rem; font-weight: 700;
+      color: var(--text);
+      cursor: pointer;
+      transition: background 0.15s, transform 0.15s;
+      position: relative;
+      padding-top: 4px;
+    }
+    .cal-cell:hover { background: var(--pink-light); transform: scale(1.08); }
+    .cal-cell.empty { cursor: default; }
+    .cal-cell.empty:hover { background: none; transform: none; }
+    .cal-cell.today {
+      background: var(--blue-light);
+      color: var(--blue-mid);
+    }
+    .cal-cell.selected {
+      background: var(--pink-mid) !important;
+      color: white !important;
+    }
+    .cal-cell.has-weekly::after,
+    .cal-cell.has-special::after {
+      content: '';
+      display: block;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      position: absolute;
+      bottom: 5px;
+    }
+    .cal-cell.has-weekly::after { background: var(--blue-mid); }
+    .cal-cell.has-special::after { background: var(--pink-mid); }
+    .cal-cell.has-weekly.has-special::after {
+      background: linear-gradient(90deg, var(--blue-mid) 50%, var(--pink-mid) 50%);
+      width: 14px;
+    }
+    
+    .cal-legend {
+      display: flex; gap: 1.5rem; margin-top: 1.2rem;
+      font-size: 0.85rem; font-weight: 700; color: var(--muted);
+      align-items: center;
+    }
+    .legend-dot {
+      display: inline-block;
+      width: 10px; height: 10px; border-radius: 50%; margin-right: 4px;
+    }
+    .legend-dot.weekly { background: var(--blue-mid); }
+    .legend-dot.special { background: var(--pink-mid); }
+    
+    /* Event detail popup */
+    .event-detail {
+      background: white;
+      border-radius: 20px;
+      padding: 1.8rem 2rem;
+      margin-top: 1.5rem;
+      border: 2px solid var(--pink-light);
+      box-shadow: 0 6px 24px rgba(242,167,184,0.15);
+      animation: fadeUp 0.3s ease both;
+    }
+    .event-detail h3 {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.3rem; color: var(--dark);
+      margin-bottom: 1rem;
+    }
+    .event-item {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid var(--pink-light);
+    }
+    .event-item:last-child { border-bottom: none; }
+    .event-dot {
+      width: 12px; height: 12px; border-radius: 50%;
+      margin-top: 5px; flex-shrink: 0;
+    }
+    .event-dot.weekly { background: var(--blue-mid); }
+    .event-dot.special { background: var(--pink-mid); }
+    .event-item-title { font-weight: 800; color: var(--dark); font-size: 1rem; }
+    .event-item-time { font-size: 0.85rem; color: var(--muted); font-weight: 600; }
+    
+    /* Upcoming events */
+    .upcoming-events {
+      margin-top: 2rem;
+    }
+    .upcoming-title {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.4rem; font-weight: 800;
+      color: var(--dark); margin-bottom: 1rem;
+    }
+    .upcoming-list { display: flex; flex-direction: column; gap: 0.8rem; }
+    .upcoming-item {
+      display: flex; align-items: center; gap: 1.2rem;
+      background: white;
+      border-radius: 16px; padding: 1rem 1.4rem;
+      border: 2px solid var(--pink-light);
+      box-shadow: 0 4px 14px rgba(242,167,184,0.1);
+      transition: transform 0.2s;
+    }
+    .upcoming-item:hover { transform: translateX(6px); }
+    .upcoming-date-box {
+      background: var(--pink-light);
+      border-radius: 12px;
+      padding: 0.5rem 0.8rem;
+      text-align: center;
+      min-width: 52px;
+    }
+    .upcoming-date-box.special { background: var(--blue-light); }
+    .upcoming-date-day {
+      font-family: 'Baloo 2', cursive;
+      font-size: 1.4rem; font-weight: 800;
+      color: var(--pink-mid); line-height: 1;
+    }
+    .upcoming-date-box.special .upcoming-date-day { color: var(--blue-mid); }
+    .upcoming-date-month {
+      font-size: 0.7rem; font-weight: 800;
+      letter-spacing: 1px; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .upcoming-item-info { flex: 1; }
+    .upcoming-item-title { font-weight: 800; color: var(--dark); font-size: 1rem; }
+    .upcoming-item-meta { font-size: 0.85rem; color: var(--muted); font-weight: 600; }
+    .upcoming-badge {
+      font-size: 0.75rem; font-weight: 800;
+      padding: 0.25rem 0.8rem; border-radius: 50px;
+      letter-spacing: 0.5px;
+    }
+    .upcoming-badge.weekly { background: var(--blue-light); color: var(--blue-mid); }
+    .upcoming-badge.special { background: var(--pink-light); color: var(--pink-mid); }
+
     /* ── HERO ── */
     .hero {
       position: relative; overflow: hidden;
@@ -214,7 +384,7 @@
     }
     .section-title .accent { color: var(--pink-mid); }
 
-    /* ── ABOUT ── */
+    /* ── WHO ARE WE ── */
     .about-bg {
       background: linear-gradient(135deg, #fce8ee 0%, #d6e8f5 100%);
     }
@@ -407,12 +577,13 @@
 <nav>
   <div class="nav-logo">WAGMIP</div>
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
+    <li><a href="#whoarewe">Who Are We</a></li>
     <li><a href="#meetings">Meetings</a></li>
     <li><a href="#community">Community</a></li>
+    <li><a href="#calendar">Calendar</a></li>
     <li><a href="#join">Join Us</a></li>
   </ul>
-  <a href="#join" class="btn btn-primary" style="padding:0.6rem 1.4rem;font-size:0.9rem;">Join ✨</a>
+  <a href="#join" class="btn btn-primary" style="padding:0.6rem 1.4rem;font-size:0.9rem;">Join</a>
 </nav>
 
 <!-- HERO -->
@@ -441,7 +612,7 @@
   </svg>
 </div>
 
-<!-- ABOUT -->
+<!-- WHO ARE WE -->
 <section class="about-bg" id="about">
   <div class="section-inner">
     <div class="section-label">Who we are</div>
@@ -449,13 +620,13 @@
     <div class="about-grid">
       <div class="about-text">
         <p>
-          WAGMIP is a welcoming community for <strong>women and gender minorities in physics</strong> — students, researchers, and anyone who loves the subject and wants to feel at home in it.
+          WAGMIP is a welcoming community for <strong>women and gender minorities in physics</strong> It's an open space for students, researchers, and anyone who loves the subject and wants to feel at home in it.
         </p>
         <p>
-          Physics can sometimes feel isolating, especially when you don't see yourself reflected in the room. We're here to change that — one Friday afternoon at a time.
+          Physics can sometimes feel so isolating when you don't see yourself reflected in the room the room of your peers.
         </p>
         <p>
-          Whether you want to talk about research, vent about problem sets, celebrate wins, or simply sit together with people who get it — <strong>WAGMIP is your place</strong>.
+          Whether you want to talk about research, vent about problem sets, celebrate wins, or simply sit together with people who get it, <strong>WAGMIP is your place</strong>.
         </p>
       </div>
       <div class="stat-cards">
@@ -494,7 +665,7 @@
 <section id="meetings">
   <div class="section-inner">
     <div class="section-label">Come hang out</div>
-    <h2 class="section-title">Every <span class="accent">Friday</span>, No Exceptions 🎉</h2>
+    <h2 class="section-title">Every <span class="accent">Friday</span>, No Exceptions</h2>
     <div class="meeting-card">
       <div class="meeting-detail">
         <div class="detail-item">
@@ -543,7 +714,7 @@
       <div class="community-card">
         <div class="card-icon">🌸</div>
         <h3>Safe Space</h3>
-        <p>A room where you can show up exactly as you are — no need to prove yourself or shrink yourself for anyone.</p>
+        <p>A room where you can show up with no pressure to prove yourself.</p>
       </div>
       <div class="community-card">
         <div class="card-icon">🔬</div>
@@ -553,14 +724,55 @@
       <div class="community-card">
         <div class="card-icon">🌐</div>
         <h3>Build Your Network</h3>
-        <p>Connect with undergrads, grad students, and researchers across departments who share your passion for physics.</p>
+        <p>Connect with alumni, other students, and professors who share your passion for physics.</p>
       </div>
       <div class="community-card">
         <div class="card-icon">💪</div>
         <h3>Representation</h3>
-        <p>The more we gather, the more visible we become. Your presence in physics matters — and WAGMIP celebrates it.</p>
+        <p>The more we gather, the more visible we become. Your presence in physics matters and WAGMIP celebrates it!</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- CALENDAR -->
+<section id="calendar">
+  <div class="section-inner">
+    <div class="section-label">What's coming up</div>
+    <h2 class="section-title">Events & <span class="accent">Meetings</span> 📅</h2>
+
+    <div class="calendar-wrapper">
+      <!-- Month Header -->
+      <div class="cal-header">
+        <button class="cal-nav" id="prevMonth">&#8592;</button>
+        <div class="cal-month-label" id="monthLabel"></div>
+        <button class="cal-nav" id="nextMonth">&#8594;</button>
+      </div>
+
+      <!-- Day labels -->
+      <div class="cal-grid cal-days-header">
+        <div>Sun</div><div>Mon</div><div>Tue</div>
+        <div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+      </div>
+
+      <!-- Date cells -->
+      <div class="cal-grid cal-cells" id="calCells"></div>
+
+      <!-- Event legend -->
+      <div class="cal-legend">
+        <span class="legend-dot weekly"></span> Weekly Meeting
+        <span class="legend-dot special"></span> Special Event
+      </div>
+    </div>
+
+    <!-- Event list for selected day -->
+    <div class="event-detail" id="eventDetail" style="display:none;">
+      <h3 id="eventDetailDate"></h3>
+      <div id="eventDetailList"></div>
+    </div>
+
+    <!-- Upcoming events list -->
+    <div class="upcoming-events" id="upcomingEvents"></div>
   </div>
 </section>
 
@@ -570,12 +782,12 @@
   <div class="blob jb2"></div>
   <div class="join-inner">
     <div class="section-label">Ready to join?</div>
-    <h2 class="section-title">Come Find Your People 🧠✨</h2>
+    <h2 class="section-title">Come Find Your People</h2>
     <p>
       We'd love to have you at our next Friday meeting! Swing by Bihall 525 between 2:30–4:30 pm, or join our GroupMe to stay in the loop with everything WAGMIP.
     </p>
     <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;">
-      <a href="#" class="btn btn-white">Join the GroupMe 💬</a>
+      <a href="https://groupme.com/join_group/112290998/H880vk9C" class="btn btn-white">Join the GroupMe 💬</a>
       <a href="#meetings" class="btn" style="background:rgba(255,255,255,0.2);color:white;border:2.5px solid rgba(255,255,255,0.6);">See Meeting Details 📍</a>
     </div>
   </div>
